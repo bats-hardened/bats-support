@@ -12,7 +12,7 @@ on:
 permissions: {}
 jobs:
   test:
-    uses: bats-core/.github/.github/workflows/test.yml@main
+    uses: bats-hardened/.github/.github/workflows/test.yml@v1
     permissions:
       contents: read
       security-events: write

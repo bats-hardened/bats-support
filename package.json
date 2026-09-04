@@ -1,5 +1,5 @@
 {
-  "name": "bats-support",
+  "name": "@bats-hardened/bats-support",
   "version": "0.3.0",
   "description": "Supporting library for Bats test helpers",
   "homepage": "https://github.com/bats-core/bats-support",
@@ -26,10 +26,10 @@
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
-    "bats": "^1"
+    "@bats-hardened/bats": "^1.14.1-alpha01"
   },
   "peerDependencies": {
-    "bats": "0.4 || ^1"
+    "@bats-hardened/bats": "0.4 || ^1.14.1-alpha01"
   },
   "keywords": [
     "bats",
