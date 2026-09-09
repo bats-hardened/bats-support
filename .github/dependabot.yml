@@ -1,14 +1,40 @@
-# Please see the documentation for all configuration options:
-# https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
-
 version: 2
-updates:
-  - package-ecosystem: npm
-    directory: "/"
-    schedule: { interval: weekly }
-    cooldown: { default-days: 15 }
 
-  - package-ecosystem: github-actions
+updates:
+  - package-ecosystem: "github-actions"
     directory: "/"
-    schedule: { interval: weekly }
-    cooldown: { default-days: 15 }
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: "npm"
+    directories:
+      - "/"
+      - "/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+    groups:
+      npm:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7
+    ignore:
+      # ignore to keep in sync with node24 used by GH runners
+      - dependency-name: "@types/node"
+        update-types:
+          - "version-update:semver-major"
+      # ignore until ESLint supports TS 7
+      - dependency-name: "typescript"
+        versions: [">=7"]
