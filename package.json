@@ -1,6 +1,6 @@
 {
   "name": "@bats-hardened/bats-support",
-  "version": "0.3.0",
+  "version": "0.3.1-alpha02",
   "description": "Supporting library for Bats test helpers",
   "homepage": "https://github.com/bats-core/bats-support",
   "license": "0BSD",
