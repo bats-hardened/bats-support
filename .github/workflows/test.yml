@@ -3,10 +3,12 @@ on:
   workflow_call:
   push:
     branches:
-      - main
-      - master
+      - "**"
+      - "!dependabot/**"
   pull_request:
-  schedule: [{ cron: "0 0 10 * *" }] # monthly https://crontab.guru/#0_0_10_*_*
+  schedule:
+    # monthly https://crontab.guru/#0_0_10_*_*
+    - cron: "0 0 10 * *"
   workflow_dispatch:
 
 permissions: {}
