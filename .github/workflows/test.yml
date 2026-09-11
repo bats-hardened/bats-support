@@ -14,7 +14,7 @@ on:
 permissions: {}
 jobs:
   test:
-    uses: bats-core/.github/.github/workflows/test.yml@main
+    uses: bats-core/.github/.github/workflows/test.yml@aaeacee71dc3659a76bfebd852b740ab42cd3447 # v1.1.0
     permissions:
       contents: read
       security-events: write
