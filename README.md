@@ -3,11 +3,11 @@
 [![GitHub release](https://img.shields.io/github/release/bats-core/bats-support.svg)](https://github.com/bats-core/bats-support/releases/latest)
 [![Build Status](https://github.com/bats-core/bats-support/actions/workflows/test.yml/badge.svg](https://github.com/bats-core/bats-support/actions?query=workflow%3ATests)
 
-
 `bats-support` is a supporting library providing common functions to
 test helper libraries written for [Bats][bats].
 
 Features:
+
 - [error reporting](#error-reporting)
 - [output formatting](#output-formatting)
 - [language tools](#language-and-execution)
@@ -18,7 +18,6 @@ load this library.
 If you want to use this library in your own helpers or just want to
 learn about its internals see the developer documentation in the [source
 files](src).
-
 
 ## Error reporting
 
@@ -45,10 +44,9 @@ The message can also be specified on the standard input.
 
 This function always fails and simply outputs the given message.
 
-```
+```text
 this test always fails
 ```
-
 
 ## Output formatting
 
@@ -56,18 +54,16 @@ Many test helpers need to produce human readable output. This library
 provides a simple way to format simple messages and key value pairs, and
 display them on the standard error.
 
-
 ### Simple message
 
 Simple messages without structure, e.g. one-line error messages, are
 simply wrapped in a header and a footer to help them stand out.
 
-```
+```text
 -- ERROR: assert_output --
 `--partial' and `--regexp' are mutually exclusive
 --
 ```
-
 
 ### Key-Value pairs
 
@@ -77,7 +73,7 @@ key-value pairs. This library provides two ways to format them.
 When the value is one line long, a pair can be displayed in a columnar
 fashion called ***two-column*** format.
 
-```
+```text
 -- output differs --
 expected : want
 actual   : have
@@ -90,7 +86,7 @@ number of lines in the value. Then, the value, indented by two spaces
 for added readability, starting on the next line. This is called
 ***multi-line*** format.
 
-```
+```text
 -- command failed --
 status : 1
 output (2 lines):
@@ -102,7 +98,7 @@ output (2 lines):
 Sometimes, for clarity, it is a good idea to display related values also
 in this format, even if they are just one line long.
 
-```
+```text
 -- output differs --
 expected (1 lines):
   want
@@ -171,7 +167,6 @@ log_test() {
   # Body goes here...
 }
 ```
-
 
 <!-- REFERENCES -->
 
