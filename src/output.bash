@@ -185,7 +185,7 @@ batslib_print_kv_single_or_multi() {
   else
     local -i i
     for (( i=1; i < ${#pairs[@]}; i+=2 )); do
-      pairs[$i]="$( batslib_prefix < <(printf '%s' "${pairs[$i]}") )"
+      pairs[i]="$( batslib_prefix < <(printf '%s' "${pairs[$i]}") )"
     done
     batslib_print_kv_multi "${pairs[@]}"
   fi
@@ -230,7 +230,9 @@ batslib_prefix() {
 #   STDOUT - lines after marking
 batslib_mark() {
   local -r symbol="$1"; shift
-  # Sort line numbers.
+  # Sort line numbers, then leave the command substitution unquoted so each
+  # result becomes a separate positional parameter.
+  # shellcheck disable=SC2046
   set -- $( sort -nu <<< "$( printf '%d\n' "$@" )" )
 
   local line
