@@ -27,7 +27,7 @@
 # Outputs:
 #   STDERR - message
 fail() {
-  if (( $# == 0 )); then
+  if (($# == 0)); then
     batslib_err
   else
     batslib_err "$@"
