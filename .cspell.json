@@ -1,0 +1,25 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": ["**/.git/**"],
+  "words": [
+    "BATSLIB",
+    "Karns",
+    "SCRIPTDIR",
+    "SHFMT",
+    "Tombol",
+    "Tömböl",
+    "ZIZMOR",
+    "Zoltan",
+    "Zoltán",
+    "batslib",
+    "panicing",
+    "pipefail",
+    "shfmt",
+    "subshells",
+    "tombol",
+    "zizmor",
+    "zoltan",
+    "ztombol"
+  ]
+}
