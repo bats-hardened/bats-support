@@ -45,7 +45,7 @@ The message can also be specified on the standard input.
 
 This function always fails and simply outputs the given message.
 
-```
+```text
 this test always fails
 ```
 
@@ -62,7 +62,7 @@ display them on the standard error.
 Simple messages without structure, e.g. one-line error messages, are
 simply wrapped in a header and a footer to help them stand out.
 
-```
+```text
 -- ERROR: assert_output --
 `--partial' and `--regexp' are mutually exclusive
 --
@@ -77,7 +77,7 @@ key-value pairs. This library provides two ways to format them.
 When the value is one line long, a pair can be displayed in a columnar
 fashion called ***two-column*** format.
 
-```
+```text
 -- output differs --
 expected : want
 actual   : have
@@ -90,7 +90,7 @@ number of lines in the value. Then, the value, indented by two spaces
 for added readability, starting on the next line. This is called
 ***multi-line*** format.
 
-```
+```text
 -- command failed --
 status : 1
 output (2 lines):
@@ -102,7 +102,7 @@ output (2 lines):
 Sometimes, for clarity, it is a good idea to display related values also
 in this format, even if they are just one line long.
 
-```
+```text
 -- output differs --
 expected (1 lines):
   want
