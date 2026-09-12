@@ -3,11 +3,11 @@
 [![GitHub release](https://img.shields.io/github/release/bats-core/bats-support.svg)](https://github.com/bats-core/bats-support/releases/latest)
 [![Build Status](https://github.com/bats-core/bats-support/actions/workflows/test.yml/badge.svg](https://github.com/bats-core/bats-support/actions?query=workflow%3ATests)
 
-
 `bats-support` is a supporting library providing common functions to
 test helper libraries written for [Bats][bats].
 
 Features:
+
 - [error reporting](#error-reporting)
 - [output formatting](#output-formatting)
 - [language tools](#language-and-execution)
@@ -18,7 +18,6 @@ load this library.
 If you want to use this library in your own helpers or just want to
 learn about its internals see the developer documentation in the [source
 files](src).
-
 
 ## Error reporting
 
@@ -49,13 +48,11 @@ This function always fails and simply outputs the given message.
 this test always fails
 ```
 
-
 ## Output formatting
 
 Many test helpers need to produce human readable output. This library
 provides a simple way to format simple messages and key value pairs, and
 display them on the standard error.
-
 
 ### Simple message
 
@@ -67,7 +64,6 @@ simply wrapped in a header and a footer to help them stand out.
 `--partial' and `--regexp' are mutually exclusive
 --
 ```
-
 
 ### Key-Value pairs
 
@@ -171,7 +167,6 @@ log_test() {
   # Body goes here...
 }
 ```
-
 
 <!-- REFERENCES -->
 
