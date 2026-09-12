@@ -26,7 +26,8 @@
 # Outputs:
 #   STDERR - message
 batslib_err() {
-  { if (( $# > 0 )); then
+  {
+    if (($# > 0)); then
       echo "$@"
     else
       PATH="$BATS_SAVED_PATH" command cat -
@@ -54,7 +55,7 @@ batslib_count_lines() {
   local -i n_lines=0
   local line
   while IFS='' read -r line || [[ -n $line ]]; do
-    (( ++n_lines ))
+    ((++n_lines))
   done < <(printf '%s' "$1")
   echo "$n_lines"
 }
@@ -70,7 +71,7 @@ batslib_count_lines() {
 #   1 - otherwise
 batslib_is_single_line() {
   for string in "$@"; do
-    (( $(batslib_count_lines "$string") > 1 )) && return 1
+    (($(batslib_count_lines "$string") > 1)) && return 1
   done
   return 0
 }
@@ -92,9 +93,9 @@ batslib_is_single_line() {
 #   STDOUT - length of longest key
 batslib_get_max_single_line_key_width() {
   local -i max_len=-1
-  while (( $# != 0 )); do
+  while (($# != 0)); do
     local -i key_len="${#1}"
-    batslib_is_single_line "$2" && (( key_len > max_len )) && max_len="$key_len"
+    batslib_is_single_line "$2" && ((key_len > max_len)) && max_len="$key_len"
     shift 2
   done
   echo "$max_len"
@@ -118,8 +119,9 @@ batslib_get_max_single_line_key_width() {
 # Outputs:
 #   STDOUT - formatted key-value pairs
 batslib_print_kv_single() {
-  local -ir col_width="$1"; shift
-  while (( $# != 0 )); do
+  local -ir col_width="$1"
+  shift
+  while (($# != 0)); do
     printf '%-*s : %s\n' "$col_width" "$1" "$2"
     shift 2
   done
@@ -142,8 +144,8 @@ batslib_print_kv_single() {
 # Outputs:
 #   STDOUT - formatted key-value pairs
 batslib_print_kv_multi() {
-  while (( $# != 0 )); do
-    printf '%s (%d lines):\n' "$1" "$( batslib_count_lines "$2" )"
+  while (($# != 0)); do
+    printf '%s (%d lines):\n' "$1" "$(batslib_count_lines "$2")"
     printf '%s\n' "$2"
     shift 2
   done
@@ -171,21 +173,22 @@ batslib_print_kv_multi() {
 # Outputs:
 #   STDOUT - formatted key-value pairs
 batslib_print_kv_single_or_multi() {
-  local -ir width="$1"; shift
-  local -a pairs=( "$@" )
+  local -ir width="$1"
+  shift
+  local -a pairs=("$@")
 
   local -a values=()
   local -i i
-  for (( i=1; i < ${#pairs[@]}; i+=2 )); do
-    values+=( "${pairs[$i]}" )
+  for ((i = 1; i < ${#pairs[@]}; i += 2)); do
+    values+=("${pairs[$i]}")
   done
 
   if batslib_is_single_line "${values[@]}"; then
     batslib_print_kv_single "$width" "${pairs[@]}"
   else
     local -i i
-    for (( i=1; i < ${#pairs[@]}; i+=2 )); do
-      pairs[i]="$( batslib_prefix < <(printf '%s' "${pairs[$i]}") )"
+    for ((i = 1; i < ${#pairs[@]}; i += 2)); do
+      pairs[i]="$(batslib_prefix < <(printf '%s' "${pairs[$i]}"))"
     done
     batslib_print_kv_multi "${pairs[@]}"
   fi
@@ -229,22 +232,23 @@ batslib_prefix() {
 # Outputs:
 #   STDOUT - lines after marking
 batslib_mark() {
-  local -r symbol="$1"; shift
+  local -r symbol="$1"
+  shift
   # Sort line numbers, then leave the command substitution unquoted so each
   # result becomes a separate positional parameter.
   # shellcheck disable=SC2046
-  set -- $( sort -nu <<< "$( printf '%d\n' "$@" )" )
+  set -- $(sort -nu <<<"$(printf '%d\n' "$@")")
 
   local line
   local -i idx=0
   while IFS='' read -r line || [[ -n $line ]]; do
-    if (( ${1:--1} == idx )); then
+    if ((${1:--1} == idx)); then
       printf '%s\n' "${symbol}${line:${#symbol}}"
       shift
     else
       printf '%s\n' "$line"
     fi
-    (( ++idx ))
+    ((++idx))
   done
 }
 
